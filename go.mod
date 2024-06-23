@@ -1,6 +1,6 @@
 module github.com/handlename/my-golang-template
 
-go 1.22.0
+go 1.22
 
 require (
 	github.com/morikuni/failure/v2 v2.0.0-20240419002657-2551069d1c86
