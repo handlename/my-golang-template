@@ -3,6 +3,7 @@ package myapp
 import (
 	"context"
 
+	errcode "github.com/handlename/my-golang-template/internal/errorcode"
 	"github.com/morikuni/failure/v2"
 )
 
@@ -13,5 +14,5 @@ func NewApp() *App {
 }
 
 func (a *App) Run(ctx context.Context) error {
-	return failure.New(ErrNotImplemented, failure.Message("not implemented yet"))
+	return failure.New(errcode.ErrNotImplemented, failure.Message("not implemented yet"))
 }

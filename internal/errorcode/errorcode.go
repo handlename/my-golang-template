@@ -1,4 +1,4 @@
-package myapp
+package errorcode
 
 type ErrorCode string
 
