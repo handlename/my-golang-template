@@ -23,7 +23,7 @@ const (
 
 func Run() ExitCode {
 	var root command.Root
-	ktx := kong.Parse(&root)
+	ktx := kong.Parse(&root, kong.Vars{"version": fmt.Sprintf("myapp v%s", myapp.Version)})
 
 	myapp.InitLogger(root.LogLevel)
 
