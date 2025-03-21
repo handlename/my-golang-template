@@ -29,7 +29,7 @@ func Run() ExitCode {
 
 	// TODO: build options for new App
 
-	app := myapp.NewApp()
+	app := myapp.New()
 
 	// TODO: build options to run App
 
