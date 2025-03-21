@@ -33,7 +33,7 @@ func InitLogger(level string) {
 	case "panic":
 		zerolog.SetGlobalLevel(zerolog.PanicLevel)
 	default:
-		log.Info().Msgf("Invalid log level `%s`. Falled back to `info` level", level)
+		// fallback to `info`
 		zerolog.SetGlobalLevel(zerolog.InfoLevel)
 	}
 }
