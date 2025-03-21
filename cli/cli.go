@@ -7,7 +7,9 @@ import (
 	"os"
 	"os/signal"
 
+	"github.com/alecthomas/kong"
 	myapp "github.com/handlename/my-golang-template"
+	"github.com/handlename/my-golang-template/cli/command"
 	"github.com/morikuni/failure/v2"
 	"github.com/rs/zerolog/log"
 )
@@ -20,18 +22,10 @@ const (
 )
 
 func Run() ExitCode {
-	flags, err := parseFlags(os.Args[0], os.Args[1:])
-	if err != nil {
-		log.Error().Err(err).Msg("failed to parse flags")
-		return ExitCodeError
-	}
+	var root command.Root
+	ktx := kong.Parse(&root)
 
-	myapp.InitLogger(flags.LogLevel)
-
-	if flags.Version {
-		log.Info().Msgf("myapp v%s", myapp.Version)
-		return ExitCodeOK
-	}
+	myapp.InitLogger(root.LogLevel)
 
 	// TODO: build options for new App
 
@@ -42,7 +36,7 @@ func Run() ExitCode {
 	ctx, stop := signal.NotifyContext(context.Background(), os.Interrupt)
 	defer stop()
 
-	if err := app.Run(ctx); err != nil {
+	if err := ktx.Run(&command.Context{Ctx: ctx, App: app}); err != nil {
 		if errors.Is(err, context.Canceled) {
 			log.Error().Msg("canceled")
 		} else {
