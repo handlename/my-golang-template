@@ -3,7 +3,7 @@ module github.com/handlename/my-golang-template
 go 1.22
 
 require (
-	github.com/alecthomas/kong v1.12.0
+	github.com/alecthomas/kong v1.12.1
 	github.com/morikuni/failure/v2 v2.0.0-20240419002657-2551069d1c86
 	github.com/rs/zerolog v1.34.0
 )
